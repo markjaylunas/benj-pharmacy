@@ -1,0 +1,160 @@
+.login-page {
+    display: flex;
+    flex-direction: row-reverse;
+    .right {
+        flex: 2;
+        width: 40vw; 
+        background-color: $color-blue-2;
+        padding: 10px;
+        p {
+            color: $color-white;
+            font-size: 1.5rem;
+            width: 60%;
+            margin: 50px auto;
+        }
+        .img-div {
+            margin: 50px 0;
+            margin-left: 18vw;
+            img {
+                width: 400px;
+            }
+            @media (max-width: 1024px){
+            margin-left: 0;
+
+            }
+        }
+    }
+    .left {
+        flex: 3;
+        background: $color-white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .login {
+            width: 400px;
+            min-height: 70vh;
+            margin: 50px 0;
+            h1 {
+                font-size: 1.7rem;
+                margin-bottom: 40px;
+            }
+            form {
+                font-size: 1rem;
+                display: flex;
+                flex-direction: column;
+                input {
+                    margin-bottom: 2rem;
+                    font-size: 1rem;
+                    font-weight: 300;
+                    padding: 5px 0;
+                    border: none;
+                    border-bottom: 1px solid $color-grey;
+                    padding-left: 5px;
+
+                    &[type=submit] {
+                        background-color: $color-blue-3;
+                        border-radius: 9px;
+                        padding: 8px;
+                        color: $color-white;
+                        font-weight: 600;
+                    }
+                }
+            }
+            p {
+                margin-left: 5px;
+                font-size: .8rem;
+                font-weight: 300;
+                
+                a {
+                    color: $color-blue-3;
+                    font-weight: 400;
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 475px) {
+    .login-page {
+        display: flex;
+        flex-direction: row-reverse;
+        .right {
+            display: none;
+            flex: 2;
+            width: 40vw; 
+            background-color: $color-blue-2;
+            padding: 10px;
+            p {
+                color: $color-white;
+                font-size: 1.5rem;
+                width: 60%;
+                margin: 50px auto;
+            }
+            .img-div {
+                margin: 50px 0;
+                margin-left: 18vw;
+                img {
+                    width: 400px;
+                }
+                @media (max-width: 1024px){
+                margin-left: 0;
+    
+                }
+            }
+        }
+        .left {
+            flex: 3;
+            background: $color-white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .login {
+                width: 300px;
+                min-height: 30vh;
+                margin: 50px 0;
+                h1 {
+                    font-size: 1.7rem;
+                    margin-bottom: 40px;
+                }
+                form {
+                    font-size: 1rem;
+                    display: flex;
+                    flex-direction: column;
+                    input {
+                        margin-bottom: 2rem;
+                        font-size: 1rem;
+                        font-weight: 300;
+                        padding: 5px 0;
+                        border: none;
+                        border-bottom: 1px solid $color-grey;
+                        padding-left: 5px;
+    
+                        &[type=submit] {
+                            background-color: $color-blue-3;
+                            border-radius: 9px;
+                            padding: 8px;
+                            color: $color-white;
+                            font-weight: 600;
+                        }
+                    }
+                }
+                p {
+                    margin-left: 5px;
+                    font-size: .8rem;
+                    font-weight: 300;
+                    
+                    a {
+                        color: $color-blue-3;
+                        font-weight: 400;
+                        &:hover {
+                            text-decoration: underline;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

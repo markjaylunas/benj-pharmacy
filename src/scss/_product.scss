@@ -1,0 +1,160 @@
+.product-page {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 0 auto;
+    margin: 10vw;
+    margin-top: 5vw;
+    .left {
+        display: flex;
+        flex: 3;
+        justify-content: center;
+        width: 100%;
+        .product-image {
+            img {
+                width: 250px;
+            }
+        }
+    }
+    .right {
+        flex: 5;
+        width: 100%;
+        .product-name {
+            font-size: 1.3rem;
+        }
+        .product-price {
+            font-size: 1.2rem;
+            margin: 10px 0;
+        }
+        .quantity {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            p {
+                font-size: 1.2rem;
+                margin: 0;
+            }
+            i {
+                color: $color-blue-3;
+                margin: 0 10px;
+                width: auto;
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+            input {
+                border: 1px solid $color-black;
+                border-radius: 3px;
+                width: 4rem;
+                text-align: center;
+
+            }
+        }
+        .add-to-cart {
+            margin: 40px 0;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: $color-blue-3;
+            background: $color-white;
+            border: 3px solid $color-blue-3;
+            border-radius: 9px;
+            padding: 7px 50px;
+            margin: 20px 0;
+            &:hover {
+                color: $color-white;
+                background: $color-blue-3;
+                border: 3px solid $color-blue-3;
+                transform: scale(.98);
+            }
+        }
+        .product-details {
+            font-size: .8rem;
+        }
+        .product-description { 
+            margin: 40px 0;
+            font-size: .8rem;
+        }
+
+    }
+}
+
+@media only screen and (max-width: 475px) {
+    .product-page {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+        margin: 10vw;
+        margin-top: 5vw;
+        .left {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            .product-image {
+                img {
+                    width: 250px;
+                }
+            }
+        }
+        .right {
+            width: 100%;
+            .product-name {
+                font-size: 1.3rem;
+            }
+            .product-price {
+                font-size: 1.2rem;
+                margin: 10px 0;
+            }
+            .quantity {
+                display: flex;
+                align-items: center;
+                text-align: center;
+                p {
+                    font-size: 1.2rem;
+                    margin: 0;
+                }
+                i {
+                    color: $color-blue-3;
+                    margin: 0 10px;
+                    width: auto;
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+                input {
+                    border: 1px solid $color-black;
+                    border-radius: 3px;
+                    width: 4rem;
+                    text-align: center;
+    
+                }
+            }
+            .add-to-cart {
+                margin: 40px 0;
+                font-size: 1.1rem;
+                font-weight: 700;
+                color: $color-blue-3;
+                background: $color-white;
+                border: 3px solid $color-blue-3;
+                border-radius: 9px;
+                padding: 7px 50px;
+                margin: 20px 0;
+                &:hover {
+                    color: $color-white;
+                    background: $color-blue-3;
+                    border: 3px solid $color-blue-3;
+                    transform: scale(.98);
+                }
+            }
+            .product-details {
+                font-size: .8rem;
+            }
+            .product-description { 
+                margin: 40px 0;
+                font-size: .8rem;
+            }
+    
+        }
+    }
+}

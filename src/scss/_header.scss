@@ -1,0 +1,244 @@
+header {
+    
+    .upper-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        min-height: 10vh;
+        width: 80vw;
+        margin: 0 auto;
+        background: $color-white;
+        .acc-sm{
+            display: none;
+        }
+        .acc-lg{
+            display: block;
+        }
+
+        .logo-name { 
+            color: $color-blue-4;
+            font-size: 2rem;
+        }
+        .search-bar{
+            position: relative;
+            input {
+                border-radius: 50px;
+                font-size: 1rem;
+                padding: 10px;
+                padding-left: 5rem;
+                width: 35vw;
+                border: 2px solid $color-blue-4;
+            }
+            i{
+                position: absolute;
+                left: 30px;
+                top: 25%;
+                height: 100%;
+                font-size: 1.7rem;
+                color: $color-blue-4;
+                cursor: pointer;
+                z-index: 1;
+                &:hover {
+                    transform: scale(0.98);
+                }
+                &:active {
+                    transform: scale(1.01);
+                }
+            }  
+        }
+        .right-nav {
+            .user-nav{
+                display: flex;
+                align-self: center;
+                justify-content: center;
+                a {
+                    color: $color-black;
+                    font-size: 1rem;
+                    margin: 0 10px;
+                }
+                
+                .logout{
+                    font-size: 1rem;
+                }
+            }
+        }
+        .searchbar-lg{
+            display: block;
+        }
+    }
+    .searchbar-sm-container{
+        display: none;
+        form{
+            display: none;
+        }
+    }
+    
+    
+    .lower-nav {
+        background-color: $color-blue-1;
+        nav {
+            ul {
+                list-style: none;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 7vh;
+                margin: 0;
+
+                li {
+                    padding: 0 15px;
+                    a{
+                        color: $color-black;
+                        font-size: 1.4rem;
+                        
+                        &:hover {
+                            color: $color-grey;
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+}
+
+
+@media only screen and (max-width: 480px) {
+    header {
+        .upper-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 5vh;
+            width: 80vw;
+            margin: 0 auto;
+            background: $color-white;
+            .acc-lg{
+                display: none;
+            }
+            .acc-sm{
+                display: block;
+            }
+            .logo-name { 
+                color: $color-blue-4;
+                font-size: 1.5rem;
+            }
+            .search-bar{
+
+                position: relative;
+                input {
+                    border-radius: 50px;
+                    font-size: 1rem;
+                    padding: 10px;
+                    padding-left: 5rem;
+                    width: 35vw;
+                    border: 2px solid $color-blue-4;
+                } 
+                i{
+                    position: absolute;
+                    left: 30px;
+                    top: 25%;
+                    height: 100%;
+                    font-size: 1.7rem;
+                    color: $color-blue-4;
+                    cursor: pointer;
+                    z-index: 1;
+                    &:hover {
+                        transform: scale(0.98);
+                    }
+                    &:active {
+                        transform: scale(1.01);
+                    }
+                }  
+            }
+            .right-nav {
+                .user-nav{
+                    display: flex;
+                    align-self: center;
+                    justify-content: center;
+                    a {
+                        color: $color-black;
+                        font-size: 1rem;
+                        margin: 0 10px;
+                    }
+                    
+                    .logout{
+                        font-size: 1rem;
+                    }
+                }
+            }
+            .searchbar-lg{
+                display: none;
+            }
+        }
+        .searchbar-sm-container{
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 5px 0;
+            .search-bar{
+                width: 100%;
+                height: 5vh;
+                margin-bottom: 5px;
+            }
+            form{
+                
+                display: block;
+                position: relative;
+                
+                input {
+                    border-radius: 50px;
+                    font-size: 1rem;
+                    padding: 5px;
+                    padding-left: 4rem;
+                    width: 100%;
+                    border: 2px solid $color-blue-4;
+                    
+                } 
+                i{
+                    position: absolute;
+                    left: 20px;
+                    top: 15%;
+                    height: 100%;
+                    font-size: 1.7rem;
+                    color: $color-blue-4;
+                    cursor: pointer;
+                    z-index: 1;
+                    &:hover {
+                        transform: scale(0.98);
+                    }
+                    &:active {
+                        transform: scale(1.01);
+                    }
+                }  
+            }
+        }
+        
+        .lower-nav {
+            background-color: $color-blue-1;
+            nav {
+                ul {
+                    list-style: none;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    min-height: 4vh;
+                    margin: 0;
+                    padding: 0;
+                    li {
+                        
+                        a{
+                            color: $color-black;
+                            font-size: 1.2rem;
+                            
+                            &:hover {
+                                color: $color-grey;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }    
+}

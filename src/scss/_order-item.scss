@@ -1,0 +1,135 @@
+.order {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $color-white;
+    margin-top: 20px;
+    border-radius: 9px;
+    box-shadow: -1px 4px 9px 0px rgba(209,209,209,0.27);
+    padding: 5px 10px;
+    #checkbox {
+        font-size: 1rem;
+        color: $color-grey;
+    }
+    img {
+        width: 70px;
+    }
+    .product-name {
+        font-size: .8rem;
+        color: $color-black;
+        width: 200px;
+
+    }
+    .product-price-summary {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        
+        .product-price {
+            font-size: 1rem;
+            color: $color-blue-3;
+            height: 0;
+        }
+        .quantity {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            i {
+            font-size: 1rem;
+            
+            }
+            input {
+                font-size: 1rem;
+                width: 30px;
+                text-align: center;
+                border: none;
+                color: $color-blue-3;
+            }
+            i {
+            font-size: 1rem;
+            }
+            .checkout_p {
+                font-size: 1rem;
+                padding-top: 1rem;
+                padding-bottom: 0;
+                color: $color-grey;
+                
+            }
+        }
+    }
+    button {
+        font-size: 1rem;
+        color: $color-grey;
+        margin: 10px;
+        background: $color-white;
+    }
+}
+
+@media only screen and (max-width: 475px) {
+    .order {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: $color-white;
+        margin-top: 20px;
+        border-radius: 9px;
+        box-shadow: -1px 4px 9px 0px rgba(209,209,209,0.27);
+        padding: 5px 10px;
+        #checkbox {
+            font-size: 1rem;
+            color: $color-grey;
+        }
+        img {
+            width: 70px;
+        }
+        .product-name {
+            font-size: .8rem;
+            color: $color-black;
+            width: 200px;
+    
+        }
+        .product-price-summary {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            
+            .product-price {
+                font-size: 1rem;
+                color: $color-blue-3;
+                height: 0;
+            }
+            .quantity {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                i {
+                font-size: 1rem;
+                
+                }
+                input {
+                    font-size: 1rem;
+                    width: 30px;
+                    text-align: center;
+                    border: none;
+                    color: $color-blue-3;
+                }
+                i {
+                font-size: 1rem;
+                }
+                .checkout_p {
+                    font-size: 1rem;
+                    padding-top: 1rem;
+                    padding-bottom: 0;
+                    color: $color-grey;
+                    
+                }
+            }
+        }
+        button {
+            font-size: 1rem;
+            color: $color-grey;
+            margin: 10px;
+            background: $color-white;
+        }
+    }
+}

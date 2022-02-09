@@ -1,0 +1,138 @@
+.account-page {
+    display: flex;
+    margin: 2vh 10vw;
+    gap: 2rem;
+    min-height: 70vh;
+    .left {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        .card{
+            
+            .row{
+                label{
+                    span{
+                        color: $color-grey;
+                    }
+                }
+            }
+        }
+    }
+    .right{
+        flex: 2;
+        .orders{
+            .order{
+                display: flex;
+                box-shadow: -1px 4px 9px 0px rgba(209,209,209,0.9);
+                p{
+                    padding: .2rem .8rem;
+                    margin: 0;
+                }
+                .order-left{
+                    .order_id{
+                        span{
+                            color: $color-blue-3;
+                        }
+                    }
+                    .created_at{
+                        span{
+                            color: $color-grey;
+                        }
+                    }
+                }
+
+                .order-middle{
+                    p{
+                        span{
+                            color: $color-red;
+                        }
+                    }
+                    p:first-of-type{
+                        span {
+                            color: $color-grey;
+                        }
+                    }
+                }
+                .order-right{
+                    p{
+                        span{
+                            color: $color-grey;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 475px) {
+    .account-page {
+        display: flex;
+        flex-direction: column;
+        margin: 2vh 10vw;
+        gap: 2rem;
+        min-height: 70vh;
+        .left {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            .card{
+                
+                .row{
+                    label{
+                        span{
+                            color: $color-grey;
+                        }
+                    }
+                }
+            }
+        }
+        .right{
+            flex: 2;
+            .orders{
+                .order{
+                    display: flex;
+                    box-shadow: -1px 4px 9px 0px rgba(209,209,209,0.9);
+                    p{
+                        padding: .2rem .8rem;
+                        margin: 0;
+                    }
+                    .order-left{
+                        .order_id{
+                            span{
+                                color: $color-blue-3;
+                            }
+                        }
+                        .created_at{
+                            span{
+                                color: $color-grey;
+                            }
+                        }
+                    }
+    
+                    .order-middle{
+                        p{
+                            span{
+                                color: $color-red;
+                            }
+                        }
+                        p:first-of-type{
+                            span {
+                                color: $color-grey;
+                            }
+                        }
+                    }
+                    .order-right{
+                        p{
+                            span{
+                                color: $color-grey;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

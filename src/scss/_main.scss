@@ -1,0 +1,244 @@
+main {
+    background: $color-grey-0;
+    .banner {
+        width: 100%;
+        padding: 0 20vh;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        background-color: $color-banner;
+        .left {
+            width: 100%;
+            height: 100%;
+            .upper {
+                width: 350px;
+                h1 {
+                    font-size: 4rem;
+                    margin: 20px 0;
+                }
+                p {
+                    color: $color-blue-4;
+                    font-weight: bold;
+                    padding-left: 3px;
+                }
+            }
+    
+            .lower {
+                height: 100%;
+                margin: 20px 0 30px;
+                a {
+                    font-size: 1.7rem;
+                    color: $color-white;
+                    background: $color-blue-3;
+                    padding: 10px 50px;
+                    border-radius: 50px;
+                    margin-left: 20px;
+                    
+                    
+                }
+            }
+        }
+        .right {
+            padding: 0;
+            margin: 0;
+            display: block;
+            img {
+                width: 500px;
+                
+            }
+        }
+    }
+    // ALL PRODUCTS
+    .products {
+        width: 80vw;
+        margin: 0 auto;
+        padding: 50px 0;
+        section {
+            margin: 20px 0;
+            margin-top: 50px;
+            h1 {
+                font-size: 1.8rem;
+                margin: 20px 0;
+            }
+            .item-row {
+                min-height: 300px;
+                display: flex;
+                flex-wrap: wrap;
+                gap: .6rem;
+
+                @import '_item';
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 475px) {
+    main {
+        background: $color-grey-0;
+        overflow: hidden;
+        padding: 0 !important;
+        margin: 0 !important;
+        .banner {
+            width: 100%;
+            padding: 0;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-direction: column;
+            background-color: $color-banner;
+            .left {
+                width: 100%;
+                height: 100%;
+                width: 80vw;
+                margin: 0 auto;
+                .upper {
+                    width: 350px;
+                    h1 {
+                        font-size: 3rem;
+                        margin: 20px 0;
+                    }
+                    p {
+                        color: $color-blue-4;
+                        font-weight: bold;
+                        padding-left: 3px;
+                    }
+                }
+        
+                .lower {
+                    height: 100%;
+                    margin: 20px 0 30px;
+                    a {
+                        font-size: 1.7rem;
+                        color: $color-white;
+                        background: $color-blue-3;
+                        padding: 10px 50px;
+                        border-radius: 50px;
+                        margin-left: 20px;
+                        
+                        
+                    }
+                }
+            }
+            .right {
+                padding: 0;
+                margin: 0;
+                display: block;
+                img {
+                    width: 200px;
+                    
+                }
+            }
+        }
+        // ALL PRODUCTS 
+        .products {
+            width: 100vw !important;
+            margin: 0;
+            padding: 0 !important;
+            overflow : hidden;
+            section {
+                margin: 0;
+                margin-top: 10px;
+                h1 {
+                    font-size: 1.8rem;
+                    margin-left: 10vw !important;
+                }
+                .item-row {
+                    min-height: 300px;
+                    display: flex;
+                    width: 100vw !important;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    gap: .6rem;
+                    margin: 0 !important;
+                    padding: 0 !important;
+    
+                    @import '_item';
+                }
+            }
+        }
+    }
+}
+
+
+
+@media only screen and (max-width: 768px) {
+    main {
+        background: $color-grey-0;
+        .banner {
+            width: 100%;
+            padding: 0;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-direction: column;
+            background-color: $color-banner;
+            .left {
+                width: 100%;
+                height: 100%;
+                width: 80vw;
+                margin: 0 auto;
+                .upper {
+                    width: 350px;
+                    h1 {
+                        font-size: 3rem;
+                        margin: 20px 0;
+                    }
+                    p {
+                        color: $color-blue-4;
+                        font-weight: bold;
+                        padding-left: 3px;
+                    }
+                }
+        
+                .lower {
+                    height: 100%;
+                    margin: 20px 0 30px;
+                    button {
+                        font-size: 1.7rem;
+                        color: $color-white;
+                        background: $color-blue-3;
+                        padding: 10px 50px;
+                        border-radius: 50px;
+                        margin-left: 20px;
+                        
+                        
+                    }
+                }
+            }
+            .right {
+                padding: 0;
+                margin: 0;
+                display: block;
+                img {
+                    width: 500px;
+                    
+                }
+            }
+        }
+        // ALL PRODUCTS
+        .products {
+            width: 80vw;
+            margin: 0 auto;
+            padding: 50px 0;
+            section {
+                margin: 20px 0;
+                margin-top: 50px;
+                h1 {
+                    font-size: 1.8rem;
+                    margin: 20px 0;
+                }
+                .item-row {
+                    min-height: 300px;
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: .6rem;
+    
+                    @import '_item';
+                }
+            }
+        }
+    }
+}

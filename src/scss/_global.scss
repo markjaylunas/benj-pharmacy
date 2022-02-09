@@ -1,0 +1,25 @@
+
+
+*:focus {
+    outline: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.null {
+    height: 60vh;
+    width: 50vw;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 20vh;
+    h4{
+        margin: 0 auto;
+        font-size: 2rem;
+        font-weight: 600;
+    }
+}
+

@@ -1,0 +1,134 @@
+footer {
+    width: 100%;
+    background-color: $color-blue-1;
+    .upper-footer {
+        display: flex;
+        justify-content: space-evenly;
+        width: 80%;
+        margin: 0 auto;
+        padding: 20px;
+        background: $color-blue-1;
+        font-size: .9rem;
+        font-weight: normal;
+        
+        h4 {
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        
+        section {
+            max-width: 300px;
+            h4 {
+                margin: 15px 0 10px;
+            }
+            p {
+                margin-bottom: 0;
+            }
+            .social {
+                a {
+                    font-size: 2rem;
+                    color: $color-blue-4;
+                }
+            }
+            img {
+                width: 3rem;
+            }
+            .payment-logo{
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                p {
+                    font-size: 1.2rem;
+                    font-weight: 700;
+                }
+                & > * {
+                    padding-right: 10px;
+                }
+            }
+        }
+
+    }
+    .lower-footer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: $color-black;
+        color: $color-white;
+        min-height: 6vh;
+        
+        p {
+            font-size: .8rem;
+            font-weight: normal;
+            margin-bottom:0;
+        }
+    }
+}
+
+@media only screen and (max-width: 475px) {
+    footer {
+        width: 100%;
+        background-color: $color-blue-1;
+        .upper-footer {
+            display: flex;
+            justify-content: space-evenly;
+            flex-direction: column;
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background: $color-blue-1;
+            font-size: .9rem;
+            font-weight: normal;
+            
+            h4 {
+                font-size: 1rem;
+                font-weight: 500;
+            }
+            
+            section {
+                max-width: 300px;
+                h4 {
+                    margin: 15px 0 10px;
+                }
+                p {
+                    margin-bottom: 0;
+                }
+                .social {
+                    a {
+                        font-size: 2rem;
+                        color: $color-blue-4;
+                    }
+                }
+                img {
+                    width: 3rem;
+                }
+                .payment-logo{
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                    p {
+                        font-size: 1.2rem;
+                        font-weight: 700;
+                    }
+                    & > * {
+                        padding-right: 10px;
+                    }
+                }
+            }
+    
+        }
+        .lower-footer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: $color-black;
+            color: $color-white;
+            min-height: 6vh;
+            
+            p {
+                font-size: .8rem;
+                font-weight: normal;
+                margin-bottom:0;
+            }
+        }
+    }
+}
