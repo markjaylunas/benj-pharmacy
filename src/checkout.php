@@ -101,18 +101,19 @@ if(isset($_SESSION['user_id'])){
                 <div class="pay-left">
                     <i class="fas fa-truck-loading"></i>
                     <label>Cash on Delivery</label>
-                    <p>Pay when you recieve</p>
+                    <p>Pay when you receive</p>
                 </div>
                 <input type="radio" name="payment_method" class="payment_method_input" value="cod">
             </div>
-            <div class="gcash">
+            <div class="paypal">
                 <div class="pay-left">
-                    <img src="./images/gcash-icon.png"  alt="">
-                    <label>GCash e-Wallet</label>
-                    <p>Pay with GCash</p>
+                    <i class="fab fa-paypal"></i>
+                    <label>Paypal</label>
+                    <p>Pay now with Paypal</p>
                 </div>
-                <input type="radio" name="payment_method" class="payment_method_input" value="gcash">
+                <input type="radio" name="payment_method" class="payment_method_input" value="paypal">
             </div>
+            
         </div>
 
         <hr>
@@ -188,10 +189,10 @@ if(isset($_SESSION['user_id'])){
         }
         $('.cod').on('click', function(){
             var radio = $(this).children('input[type="radio"]');
-            var otherRadio = $('.gcash').children('input[type="radio"]');
+            var otherRadio = $('.paypal').children('input[type="radio"]');
             paymentMethodSelected(radio,otherRadio);
         });
-        $('.gcash').on('click', function(){
+        $('.paypal').on('click', function(){
             var radio = $(this).children('input[type="radio"]');
             var otherRadio = $('.cod').children('input[type="radio"]');
             paymentMethodSelected(radio,otherRadio);

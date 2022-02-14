@@ -23,8 +23,8 @@
                     <div class="payment-method">
                         <h4>Payment Method</h4>
                         <div class="payment-logo">
-                        <p>COD</p>
-                            <img src="https://logos-download.com/wp-content/uploads/2020/06/GCash_Logo-700x618.png" alt="">
+                            <p>COD</p>
+                            <i class="fab fa-paypal"></i>
                         </div>
                     </div>
                 </section>

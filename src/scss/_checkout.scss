@@ -77,11 +77,9 @@
                         margin: 0;
                     }
                 }
-                
             }
-            .gcash {
+            .paypal{
                 user-select: none;
-                
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
@@ -89,8 +87,9 @@
                 padding: 10px;
                 border-radius: 9px;
                 .pay-left {
-                    img{
-                        width: 2rem;
+                    i{
+                        font-size: 1.3rem;
+                        color: $color-blue-3;
                     }
                     label {
                         font-size: 1.3rem;

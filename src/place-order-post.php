@@ -67,8 +67,9 @@ if (isset($_SESSION['user_id'])){
             }else{
                 echo 'failed';
             }
-        }elseif($method == 'gcash'){
-            header('Location: 404.php?error=commingsoon');
+        }elseif($method == 'paypal'){
+            header('Location: paypal');
+            exit();
         }else{
             echo 'no such method';
             exit();
