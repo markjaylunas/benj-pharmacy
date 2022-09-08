@@ -16,7 +16,7 @@ function requestGcash(){
     CURLOPT_HTTP_VERSION      => CURL_HTTP_VERSION_1_1,
     CURLOPT_CUSTOMREQUEST     => 'POST',
     CURLOPT_POSTFIELDS        => array(
-                    'x-public-key'  => 'pk_e9b2875d39ddd3310736f517adabd7a2',
+                    'x-public-key'  => '',
                     'amount'        => $_SESSION['cart_total'],
                     'description'   => 'Payment for Benj Pharmacy products',
                     // 'fee'           => 1,
