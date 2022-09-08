@@ -1,2 +1,2 @@
 # benj-pharmacy
-E-Commerce website built with PHP, Sass, and Bootstrap
+E-Commerce website built with PHP, Jquery, Sass, and Bootstrap
