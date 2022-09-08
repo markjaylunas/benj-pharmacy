@@ -308,12 +308,121 @@ if(isset($_POST['order_status_update'])){
     $sql = "UPDATE orders SET delivery_status='$status' WHERE order_id='$order_id'";
     $stmt = mysqli_query($conn, $sql);
     if($stmt){
+        
+        if ($status === '0'){
+            echo "true";
+
+            $select_sql = "SELECT * FROM orders_products WHERE order_id='$order_id' AND stock_minus='1'";
+            $select_stmt = mysqli_query($conn, $select_sql);
+            if(mysqli_num_rows($select_stmt)>0){
+                foreach($select_stmt as $row){
+                    echo ' - ';
+                    echo $row['name'];
+
+                    $product_id =  $row['product_id'];
+                    $product_quantity =  $row['quantity'];
+                    $update_sql = "UPDATE products SET stock=stock+'$product_quantity' WHERE product_id='$product_id'";
+                    $update_stmt = mysqli_query($conn, $update_sql);
+                    $update_stock_minus_sql = "UPDATE orders_products SET stock_minus='0' WHERE product_id='$product_id' AND order_id='$order_id'";
+                    $update_stock_minus_stmt = mysqli_query($conn, $update_stock_minus_sql);
+                }
+            }
+            
+        }else{
+            echo "false";
+
+            $select_sql = "SELECT * FROM orders_products WHERE order_id='$order_id' AND stock_minus='0'";
+            $select_stmt = mysqli_query($conn, $select_sql);
+            if(mysqli_num_rows($select_stmt)>0){
+                
+                foreach($select_stmt as $row){
+                    $product_id =  $row['product_id'];
+                    $product_quantity =  $row['quantity'];
+                    $update_sql = "UPDATE products SET stock=stock-'$product_quantity' WHERE product_id='$product_id'";
+                    $update_stmt = mysqli_query($conn, $update_sql);
+                    $update_stock_minus_sql = "UPDATE orders_products SET stock_minus='1' WHERE product_id='$product_id' AND order_id='$order_id'";
+                    $update_stock_minus_stmt = mysqli_query($conn, $update_stock_minus_sql);
+                }
+            }
+            
+        }
         $_SESSION['message'] = 'Status updated succesfully';
         header("Location: ../order-view-list?id=$order_id");
         exit();
     }else{
         $_SESSION['message'] = 'Status update failed';
         header("Location: ../order-view-list?id=$order_id");
+        exit();
+    }
+}
+
+if(isset($_POST['order_paid_update'])){
+    $paid = $_POST['paid'];
+    $order_id = $_POST['order_id'];
+    echo 'paid :'.$paid;
+    echo 'id :'.$order_id;
+    $sql = "UPDATE orders SET paid='$paid' WHERE order_id='$order_id'";
+    $stmt = mysqli_query($conn, $sql);
+    if($stmt){
+        $_SESSION['message'] = 'Paid Status updated succesfully';
+        header("Location: ../order-view-list?id=$order_id");
+        exit();
+    }else{
+        $_SESSION['message'] = 'Paid Status update failed';
+        header("Location: ../order-view-list?id=$order_id");
+        exit();
+    }
+}
+
+if(isset($_POST['order_cancellation_update'])){
+    $order_id = $_POST['order_id'];
+    $status = $_POST['status'];
+    echo 'order_id :'.$order_id;
+    echo 'status :'.$status;
+    
+
+    $cancellation_update_sql = "UPDATE cancellation SET status='$status' WHERE order_id='$order_id'";
+    $cancellation_update_stmt = mysqli_query($conn, $cancellation_update_sql);
+    if($cancellation_update_stmt){
+        if($status==='2'){
+            $order_cancelled_update_sql = "UPDATE orders SET cancelled='2' WHERE order_id='$order_id'";
+            $order_cancelled_update_stmt = mysqli_query($conn, $order_cancelled_update_sql);
+            if($order_cancelled_update_stmt){
+                $_SESSION['message'] = 'Both Cancellation Status updated successfully';
+                header("Location: ../order-cancelled-view?id=$order_id");
+                exit();
+            }else{
+                $_SESSION['message'] = 'Cancelled Order Status update failed';
+                header("Location: ../order-cancelled-view?id=$order_id");
+                exit();
+            }
+        }else{
+            $_SESSION['message'] = 'Cancellation Status updated successfully';
+            header("Location: ../order-cancelled-view?id=$order_id");
+            exit();
+        }
+    }else{
+        $_SESSION['message'] = 'Cancellation update failed';
+        header("Location: ../order-cancelled-view?id=$order_id");
+        exit();
+    }
+}
+
+
+if(isset($_POST['discount_status_update'])){
+    $user_id = $_POST['user_id'];
+    $approval = $_POST['approval'];
+
+    $discounts_update_sql = "UPDATE discounts SET approval='$approval' WHERE user_id='$user_id'";
+    $discounts_update_stmt = mysqli_query($conn, $discounts_update_sql);
+    if($discounts_update_stmt){
+        $_SESSION['message'] = 'Approval update success';
+        header("Location: ../discount-edit?id=$user_id");
+        exit();
+        
+    }else{
+        $_SESSION['message'] = 'Approval update failed';
+        header("Location: ../discount-edit?id=$user_id");
         exit();
     }
 }

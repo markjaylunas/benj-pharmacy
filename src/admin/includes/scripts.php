@@ -13,6 +13,7 @@
                 [10,1,5,15,25,50,"All"]
             ],
             responsive: true,
+            order: [ 8, 'desc' ],
             language: {
                 search: "_INPUT_",
                 searchPlaceholder: "Search for",

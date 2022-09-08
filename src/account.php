@@ -3,7 +3,7 @@
 if(isset($_SESSION['user_id'])){
     $user_id = $_SESSION['user_id'];
 }else{
-    header('Location: index');
+    header('Location: login');
     exit();
 }
 
@@ -83,32 +83,60 @@ if(isset($_SESSION['user_id'])){
             if(isset($_SESSION['user_id'])){
                 $user_id = $_SESSION['user_id'];
                 
-                $order_sql = "SELECT * FROM orders WHERE user_id='$user_id'";
+                $order_sql = "SELECT * FROM orders WHERE user_id='$user_id' ORDER BY created_at DESC";
                 $order_stmt = mysqli_query($conn, $order_sql);
                 if(mysqli_num_rows($order_stmt)>0){
                     foreach($order_stmt as $order_row){
                         if($order_row['payment_method']=='cod'){
                             $method = 'Cash on Delivery';
                         }elseif($order_row['payment_method']=='gcash'){
-                            $method = 'Paid with GCash';
+                            $method = 'Paid with Gcash';
+                        }elseif($order_row['payment_method']=='maya'){
+                            $method = 'Paid with Maya';
+                        }elseif($order_row['payment_method']=='paypal'){
+                            $method = 'Paid with Paypal';
                         }else{
                             $method = '';
                         }
-
-                        if($order_row['delivery_status']==0){
-                            $delivery_status_color = 'color: #FF1700;';
+                        $can_cancel = false;
+                        $delivery_status = '';
+                        if($order_row['delivery_status']==='0'){
+                            $delivery_status_color = 'color: #839AA8;';
                             $delivery_status = 'To Check';
-                        }elseif($order_row['delivery_status']==1){
+                            $can_cancel = true;
+                        }elseif($order_row['delivery_status']==='1'){
                             $delivery_status_color = 'color: #3F72AF;';
                             $delivery_status = 'Packed';
-                        }elseif($order_row['delivery_status']==2){
+                        }elseif($order_row['delivery_status']==='2'){
                             $delivery_status_color = 'color: #FFE162;';
                             $delivery_status = 'Out for Delivery';
-                        }elseif($order_row['delivery_status']==3){
-                            $delivery_status_color = 'color: #1B262C;';
+                        }elseif($order_row['delivery_status']==='3'){
+                            $delivery_status_color = 'color: #A0D995;';
                             $delivery_status = 'Delivered';
+                            
                         }
+                        $cancelled=false;
+                        $cancelled_res;
+                        $order_id_row = $order_row['order_id']; 
+                        if($order_row['cancelled']!='0'){
+                            $cancelled = true;
+                            $cancellation_sql = "SELECT * FROM cancellation WHERE order_id='$order_id_row' LIMIT 1";
+                            $cancellation_stmt = mysqli_query($conn, $cancellation_sql);
+                            if(mysqli_num_rows($cancellation_stmt)>0){
+                                foreach($cancellation_stmt as $cancellation_row){
+                                    $cancellation_res = $cancellation_row;
 
+                                    if($cancellation_res['status']==='0'){
+                                        $delivery_status = 'Cancellation Processing';
+                                    }elseif($cancellation_res['status']==='1'){
+                                        $delivery_status_color = 'color: #A0D995;';
+                                        $delivery_status =  'Cancelled';
+                                    }elseif($cancellation_res['status']==='2'){
+                                        $delivery_status .= ' / ' . 'Cancellation Declined';
+                                    }
+                                }
+                            }
+                        }
 
                         ?>
                             <div class="orders">
@@ -122,7 +150,21 @@ if(isset($_SESSION['user_id'])){
                                         <p>Total: <span>₱<?= $order_row['total'] ?></span></p>
                                     </div>
                                     <div class="order-right">
-                                        <p>Status: <span><?= $delivery_status ?></span></p>
+                                        <p>Status: <span style="<?= $delivery_status_color?>"    ><?= $delivery_status ?></span></p>
+                                        <?php
+                                        if($can_cancel) {
+                                            if(!$cancelled){
+                                            ?>
+                                            <form action="./cancel-order" method="post">
+                                                <input type="hidden" name="user_id" value="<?= $order_row['user_id']?>">
+                                                <input type="hidden" name="order_id" value="<?= $order_row['order_id']?>">
+                                                <button type="submit" class="btn btn-danger btn-sm my-3 " name="btn_cancel_order">Cancel Order</button>
+                                            </form>
+                                            <?php
+                                            }
+                                        }
+                                        
+                                        ?>
                                     </div>
                                 </div>
                             </div>

@@ -11,8 +11,8 @@
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#!">Account</a></li>
-                <hr>
+                <!-- <li><a class="dropdown-item" href="#!">Account</a></li>
+                <hr> -->
                 <li>
                     <form action="allcode" method="post" >
                         <button type="submit" name="logout_btn" class="dropdown-item">Logout</button>

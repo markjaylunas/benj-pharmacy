@@ -3,6 +3,11 @@ include('./dbh.inc.php');
 session_start();
 
 if(isset($_POST['add_to_cart'])){
+    if($_POST['product_quantity']<=0){
+        $_SESSION['message'] = 'Add to cart Failed! - Product quantity must be greater than 0';
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+        exit();
+    }
     $user_id = $_POST['user_id'];
     if(!$user_id){
         header('Location: ../login');

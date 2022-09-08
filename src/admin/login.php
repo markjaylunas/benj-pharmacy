@@ -47,7 +47,7 @@
 
                                     </div>
                                 </form>
-                                <p class="small "><a class="text-50" href="#!">Forgot password?</a></p>
+                                <!-- <p class="small "><a class="text-50" href="#!">Forgot password?</a></p> -->
                             </div>
                         </div>
                     </div>

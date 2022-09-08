@@ -1,4 +1,10 @@
-<?php include_once 'includes/header.php'; ?>
+<?php include_once 'includes/header.php'; 
+if(!isset($_SESSION['user_id'])){
+    header('Location: login');
+    exit();
+}
+?>
+
 <div class="delivery-info">
     <h3>Delivery Information</h3>
     <form action="./includes/redirect.php" method="post">

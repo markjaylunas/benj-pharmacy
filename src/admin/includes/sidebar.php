@@ -15,6 +15,10 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-box"></i></div>
                     Orders
                 </a>
+                <a class="nav-link" href="order-cancelled-list">
+                    <div class="sb-nav-link-icon"><i class="fas fa-box"></i></div>
+                    Cancelled Orders
+                </a>
                 <div class="sb-sidenav-menu-heading">Interface</div>
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts"
                     aria-expanded="false" aria-controls="collapseLayouts">
@@ -44,7 +48,7 @@
                 </div>
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseShippingFee"
                     aria-expanded="false" aria-controls="collapseShippingFee">
-                    <div class="sb-nav-link-icon"><i class="fas fa-store"></i></div>
+                    <div class="sb-nav-link-icon"><i class="fas fa-truck-loading"></i></div>
                     Delivery
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
@@ -52,6 +56,18 @@
                     data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
                         <a class="nav-link" href="shipping-fee-edit">Shipping Fee</a>
+                    </nav>
+                </div>
+                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseDiscount"
+                    aria-expanded="false" aria-controls="collapseDiscount">
+                    <div class="sb-nav-link-icon"><i class="fas fa-tag"></i></div>
+                    Discount
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse" id="collapseDiscount" aria-labelledby="headingOne"
+                    data-bs-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+                        <a class="nav-link" href="discount-view">Discount Members</a>
                     </nav>
                 </div>
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"

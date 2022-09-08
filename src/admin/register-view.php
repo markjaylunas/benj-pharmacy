@@ -31,7 +31,7 @@ include('./message.php');
                         </thead>
                         <tbody>
                             <?php 
-                                $query = "SELECT * FROM users";
+                                $query = "SELECT * FROM users WHERE status = 'verified'";
                                 $query_run = mysqli_query($conn, $query);
                                 if(mysqli_num_rows($query_run)>0){
                                     foreach($query_run as $row){

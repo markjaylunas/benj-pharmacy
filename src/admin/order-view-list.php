@@ -31,8 +31,8 @@ if(isset($_GET['id'])){
                             $user_order_res = mysqli_fetch_array($user_order_stmt);
                         }
                         
+                    if($user_order_res['delivery_option'] == 'delivery'){
                     ?>
-                    
                     <form action="./includes/functions.php" method="POST">
                         <select class="status p-1 my-2" onchange="submit()" name="status" >
                             <option <?= $user_order_res['delivery_status']==0?'selected':'' ?> value="0">To Check</option>
@@ -43,11 +43,42 @@ if(isset($_GET['id'])){
                             <input style="display: none;" type="sumbit" name="order_status_update" />
                         </select>
                     </form>
+                    <?php 
+
+                    }elseif($user_order_res['delivery_option'] == 'pickup'){
+                    ?>
+                    <form action="./includes/functions.php" method="POST">
+                        <select class="status p-1 my-2" onchange="submit()" name="status" >
+                            <option <?= $user_order_res['delivery_status']==0?'selected':'' ?> value="0">To Check</option>
+                            <option <?= $user_order_res['delivery_status']==1?'selected':'' ?> value="1">Packed</option>
+                            <option <?= $user_order_res['delivery_status']==3?'selected':'' ?> value="3">Delivered</option>
+                            <input type="hidden" name="order_id" value="<?= $user_order_res['order_id'] ?>" />
+                            <input style="display: none;" type="sumbit" name="order_status_update" />
+                        </select>
+                    </form>
+                    <?php
+                    }
+                    ?>
+                    
+                    <p style="margin: 0;"><b>Payment Method:</b> <?= ucfirst($user_order_res['payment_method'])?></p>
+                    <form action="./includes/functions.php" method="POST">
+                        <select class="status p-1 my-2" <?= $user_order_res['payment_method']=='cod'?'':'disabled'  ?> onchange="submit()" name="paid" >
+                            <option <?= $user_order_res['paid']==0?'selected':'' ?> value="0">Unpaid</option>
+                            <option <?= $user_order_res['paid']==1?'selected':'' ?> value="1">Paid</option>
+                            <input type="hidden" name="order_id" value="<?= $user_order_res['order_id'] ?>" />
+                            <input style="display: none;" type="sumbit" name="order_paid_update" />
+                        </select>
+                    </form>
                     <h5>Order ID: <?= $user_order_res['order_id']?></h5>
-                    <p style="margin: 0;">Customer: <?= $user_order_res['first_name'].' '.$user_order_res['last_name']?></p>
-                    <p style="margin: 0;">Shipping Fee: ₱<?= $user_order_res['shipping_fee']?></p>
-                    <p style="margin: 0;">Total: ₱<?= $user_order_res['total']?></p>
-                    <p style="margin: 0;">Date: <?= date('M,d Y - D', strtotime($user_order_res['oCreatedAt']))?></p>
+                    <p style="margin: 0;"><b>Date:</b> <?= date('M,d Y - D', strtotime($user_order_res['oCreatedAt']))?></p>
+                    <p style="margin: 0;"><b>Delivery Option:</b> <?= strtoupper($user_order_res['delivery_option'])?></p>
+                    <p style="margin: 0;"><b>Customer:</b> <?= $user_order_res['first_name'].' '.$user_order_res['last_name']?></p>
+                    <?= $user_order_res['discounted'] === '1'?"<span style='color:white;background:#3F72AF;border-radius:10px;margin:0;padding:3px 5px;text-align:center'>Discount Applied &#10004;</span>":'' ?>
+                    <p style="margin-top: 10px;"><b>Subtotal:</b> ₱<?= number_format((float)($user_order_res['subtotal']), 2, '.', '') ?></p>
+                    <p style="margin: 0;"><b>VAT Exempt Subtotal:</b> ₱<?= number_format((float)($user_order_res['vat_exempt_subtotal']), 2, '.', '') ?></p>
+                    <p style="margin: 0;"><b>Shipping Fee:</b> ₱<?= $user_order_res['shipping_fee']?></p>
+                    <p style="margin: 0;"><b>Discount:</b> -₱<?= $user_order_res['discount']?></p>
+                    <p style="margin: 0;"><b>Total:</b> ₱<?= $user_order_res['total']?></p>
                     
                 </div>
                 <div class="card-body">

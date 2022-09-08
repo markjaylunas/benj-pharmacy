@@ -24,13 +24,32 @@ if (isset($_GET['product'])){
                     <div class="quantity">
                         <p>Quantity</p>
                         <i class="far fa-minus-circle minus_one"></i>
-                        <input type="number" name="product_quantity" value="1">
+                        <?php
+                        if($product_res['stock'] > 0){
+                            echo  "<input type='number' name='product_quantity' value='1'>";
+                        }else{
+                            echo  "<input type='number' name='product_quantity' value='0' disabled>";
+                        }
+                        
+                        ?>
+                        
                         <i class="far fa-plus-circle add_one"></i>
+                        <p class="product-price" style="<?= $product_res['stock']==0?"font-size:1em; color:red;":"font-size:1em;" ?>"><?= $product_res['stock']; ?> available</p>
+                        <input type="hidden" id="stock_count" name="product_stock" value="<?= $product_res['stock'];?>">
                         <input type="hidden" name="product_id" value="<?= $product_res['product_id'];?>">
                         <input type="hidden" name="user_id" value="<?= $_SESSION['user_id'];?>">
                     </div>
-                    <button class="add-to-cart" type="submit" name="add_to_cart">Add to Cart</button>
+                    
+                    <?php
+                        if($product_res['stock'] > 0){
+                            echo  "<button class='add-to-cart'  type='submit' name='add_to_cart'>Add to Cart</button>";
+                        }else{
+                            echo  "<button class='btn btn-danger my-2' disabled  type='submit' name='add_to_cart'>Add to Cart</button>";
+                        }
+                        
+                        ?>
                 </form>
+
                 <?php include('./message.php') ?>
 
                 <div class="product-details">

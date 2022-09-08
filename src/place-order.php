@@ -1,33 +1,22 @@
-<?php include_once 'includes/header.php';
+<?php 
+include_once 'includes/header.php';
+// include_once 'order-mailer.php';
 
 if(isset($_SESSION['user_id'])){
     $user_id = $_SESSION['user_id'];
     $order_id = $_GET['id'];
-    
-    $summary_sql = "SELECT p.price, op.quantity FROM products p, orders_products op WHERE op.order_id ='$order_id' AND op.user_id='$user_id' AND op.product_id=p.product_id";
+    $order_total = 0;
+    $order_total_sql = "SELECT * FROM orders WHERE order_id='$order_id' LIMIT 1";
+    $order_total_stmt = mysqli_query($conn, $order_total_sql);
+    if($order_total_stmt){
+        $order_total = mysqli_fetch_assoc($order_total_stmt)['total'];
+    }
 
-    $summary_stmt = mysqli_query($conn, $summary_sql);
-    if($summary_stmt){
-        $subtotal = 0;
-        foreach($summary_stmt as $row){
-            $subtotal = $subtotal + $row['price']*$row['quantity'];
-        }
-        $_SESSION['subtotal'] = $subtotal;
-    }
-    if($subtotal>0){
-        $shipping_sql = "SELECT cost FROM shipping_fee WHERE shipping_id=1 LIMIT 1";
-        $shipping_stmt = mysqli_query($conn, $shipping_sql);
-        if($shipping_stmt){
-            $shipping_cost = mysqli_fetch_assoc($shipping_stmt)['cost'];
-            $_SESSION['shipping_cost'] = $shipping_cost;
-        }
-    }else{
-        $_SESSION['shipping_cost'] = 0;
-    }
-    $_SESSION['total'] = $_SESSION['subtotal'] + $_SESSION['shipping_cost'];
+    $_SESSION['total'] = $order_total;
+}else{
+    header('Location: login');
+    exit();
 }
-
-
 
 ?>
 

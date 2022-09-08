@@ -28,6 +28,7 @@ include('./message.php');
                                 <th>Total</th>
                                 <th>Paid</th>
                                 <th>Payment Method</th>
+                                <th>Delivery Option</th>
                                 <th>Delivery Status</th>
                                 <th>Created at</th>
                                 <th>View</th>
@@ -35,7 +36,7 @@ include('./message.php');
                         </thead>
                         <tbody>
                             <?php 
-                                $query = "SELECT o.*, u.first_name, u.last_name, u.email FROM orders o, users u WHERE u.user_id=o.user_id ORDER BY o.created_at ASC;";
+                                $query = "SELECT o.*, u.first_name, u.last_name, u.email FROM orders o, users u WHERE u.user_id=o.user_id AND (o.cancelled='0' OR o.cancelled='2') ORDER BY o.created_at DESC;";
                                 $query_run = mysqli_query($conn, $query);
                                 if(mysqli_num_rows($query_run)>0){
                                     foreach($query_run as $row){
@@ -67,6 +68,7 @@ include('./message.php');
                                             <td style="<?= $paid_status_color ?>"><?= $row['paid']==0?'Unpaid':'Paid'; ?></td>
                                             
                                             <td><?= $row['payment_method']; ?></td>
+                                            <td><?= strtoupper($row['delivery_option']); ?></td>
                                             <td style="<?= $delivery_status_color ?>"><?= $delivery_status ?></td>
                                             <td><?= $row['created_at']; ?></td>
                                             <td><a href="order-view-list?id=<?= $row['order_id']; ?>" class="btn btn-primary">View</a></td>

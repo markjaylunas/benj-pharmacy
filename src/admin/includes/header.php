@@ -11,6 +11,8 @@ include('./authentication.php');
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Dashboard - Benj Pharmacy Admin</title>
+    <link rel="icon" href="../images/benj_logo.svg">
+
     <!-- Summernote CSS - CDN Link -->
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">

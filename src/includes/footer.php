@@ -23,8 +23,10 @@
                     <div class="payment-method">
                         <h4>Payment Method</h4>
                         <div class="payment-logo">
-                        <p>COD</p>
-                            <img src="https://logos-download.com/wp-content/uploads/2020/06/GCash_Logo-700x618.png" alt="">
+                            <p>COD</p>
+                            <i class="fab fa-paypal"></i>
+                            <img style="border-radius:5px;" src="./images/gcash_logo.svg" alt="gcash">
+                            <img style="border-radius:5px;background:white;text-align:center;padding:3px;" src="./images/maya_logo.svg" alt="maya">
                         </div>
                     </div>
                 </section>
@@ -43,9 +45,12 @@
                 window.location = $(this).find('a').attr('href');
             })
             $('.minus_one').click(function(){
+                console.log()
+                if($(this).next().val()==0) return;
                 $(this).next().val(parseInt($(this).next().val())-1);
             })
             $('.add_one').click(function(){
+                if($('#stock_count').val()==$(this).prev().val()) return
                 $(this).prev().val(parseInt($(this).prev().val())+1);
             })
             // // If cookie is set, scroll to the position saved in the cookie.

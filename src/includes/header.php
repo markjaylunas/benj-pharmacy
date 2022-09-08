@@ -1,6 +1,7 @@
 <?php
     session_start();
     include('./includes/dbh.inc.php')
+    
 ?>
 
     <!DOCTYPE html>
@@ -11,8 +12,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <link rel="icon" href="./images/benj_logo.svg">
         
-        <link rel="stylesheet" href="./css/style.css?v=1.4">
+        <link rel="stylesheet" href="./css/style.css?v=1.5">
+        <link rel="stylesheet" href="./css/paypal.css?v=1.5">
 
         <title>Benj Pharmacy</title>
     </head>
@@ -28,10 +31,12 @@
                     </form>
                     <div class="right-nav">
                         <div class="user-nav">
-                        <?php
+                            <?php
+                            $uri = $_SERVER['REQUEST_URI'];
+                            $pos =  strrpos($uri,'/'); 
+                            $if_account = substr($uri,$pos+1); 
                             if(isset($_SESSION['email'])){
                                 $fname = $_SESSION['fname'];
-
                                 
                                 if(isset($_SESSION['user_id'])){
                                     $user_id = $_SESSION['user_id'];
@@ -45,10 +50,15 @@
                                     }
                                 }
 
-                                echo "<a href='./cart' class='cart'><i class='fa fa-shopping-cart'></i> ($cart_count)</a>";
-                                echo "<a class='acc-lg' href='./account' class='username'><i class='fa fa-user'></i> $fname</a>";
-                                echo "<a class='acc-sm' href='./account' class='username'><i class='fa fa-user'></i></a>";
-                                echo "<a href='./includes/logout.inc.php' class='logout'><i class='fa fa-sign-out'></i></a>";
+                                echo "<a title='Cart' href='./cart' class='cart'><i title='Cart'  class='fa fa-shopping-cart'></i> ($cart_count)</a>";
+                                
+                                if($if_account === 'account'){
+                                    echo "<a href='./includes/logout.inc.php' class='logout'><i title='Logout' class='fa fa-sign-out'></i></a>";
+                                }else{
+                                    echo "<a title='Profile' class='acc-lg' href='./account' class='username'><i title='Profile' class='fa fa-user'></i> $fname</a>";
+
+                                }
+                                
                             }else{
                                 echo '<a href="login">Login</a>';
                                 echo '<a href="signup">Sign Up</a>';

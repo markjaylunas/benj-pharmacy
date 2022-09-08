@@ -22,6 +22,9 @@ if(isset($_SESSION['user_id'])){
     }else{
         $_SESSION['shipping_cost'] = 0;
     }
+}else{
+    header('Location: login');
+    exit();
 }
 
 
@@ -80,7 +83,7 @@ if(isset($_SESSION['user_id'])){
                                     <p class="product-price">₱<?= $cart_row['price'] ?></p>
                                     <div class="quantity">
                                         <button class="qty_minus"><i class="far fa-minus-circle"></i></button>
-                                        <input  class="qty_value" type="number" id="<?= $cart_row['cart_id'] ?>" name="product-quantity" value="<?= $cart_row['quantity'] ?>">
+                                        <input  class="qty_value" type="number" readonly id="<?= $cart_row['cart_id'] ?>" name="product-quantity" value="<?= $cart_row['quantity'] ?>">
                                         <button class="qty_plus"><i class="far fa-plus-circle"></i></button>
                                     </div>
                                 </div>
@@ -103,7 +106,7 @@ if(isset($_SESSION['user_id'])){
                 }
             }
         ?>
-    </div>
+    </div> 
     <div class="order-summary">
         
         <h3>Location</h3>
@@ -134,19 +137,10 @@ if(isset($_SESSION['user_id'])){
             <button type="submit" class="btn_address" name="btn_address"><?= $address!=false?'Edit Address':'New Address' ?></button>
         </form>
         <hr>
-        <h3>Order Summary</h3>
-        <div class="subtotal">
-            <p>Subtotal</p>
-            <p >₱ <span id="subtotal_value"><?= number_format((float)$_SESSION['subtotal'], 2, '.', '') ?></span></p>
-        </div>
-        <div class="subtotal">
-            <p>Shipping Fee</p>
-            <p >₱ <span id="shipping_value"><?= number_format((float)$_SESSION['shipping_cost'], 2, '.', '') ?></span></p>
-        </div>
-        <hr>
+        
         <div class="total">
             <h3>Total</h3>
-            <p>₱ <span id="total_value"><?= number_format((float)($_SESSION['subtotal']+$_SESSION['shipping_cost']), 2, '.', '') ?></span></p>
+            <p>₱ <span id="total_value"><?= number_format((float)($_SESSION['subtotal']), 2, '.', '') ?></span></p>
         </div>
         <button id="checkout" class="<?= $address?'have_address':'no_address' ?>">Checkout</button>
     </div>
@@ -160,7 +154,7 @@ if(isset($_SESSION['user_id'])){
                 url: 'includes/cart.inc.php',
                 type: "POST",
                 dataType: "json",
-                data: {summary_update: true},
+                data: {cart_summary_update: true},
                 success: function(result){
                     $('#subtotal_value').text((Math.round(result.subtotal * 100) / 100).toFixed(2));
                     $('#shipping_value').text((Math.round(result.shipping_cost * 100) / 100).toFixed(2));

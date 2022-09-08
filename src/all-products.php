@@ -118,11 +118,11 @@ $results_per_page = 4;
                         $pro_stmt = mysqli_query($conn, $pro_sql);
                         if($pro_stmt){
                             foreach($pro_stmt as $pro_row){
-
+                                
                                 ?>
-                                <div class="item clickable ">
+                                <div class="item clickable overflow-hidden">
                                     <img class="item-img" src="./uploads/products/<?= $pro_row['image']?>" alt="<?= $pro_row['name']?>">
-                                    <a href="product?product=<?= $pro_row['slug']?>" class="item-name"><?= $pro_row['name']?></a>
+                                    <a href="product?product=<?= $pro_row['slug']?>" class="item-name"><?= strlen($pro_row['name']) > 60 ? substr($pro_row['name'],0,60)."..." : $pro_row['name']?></a>
                                     <p class="item-price">₱<?= $pro_row['price']?></p>
                                 </div>
                                 <?php
@@ -265,9 +265,9 @@ $results_per_page = 4;
                                 foreach($pro_stmt as $pro_row){
 
                                     ?>
-                                    <div class="item clickable ">
+                                    <div class="item clickable overflow-hidden">
                                         <img class="item-img" src="./uploads/products/<?= $pro_row['image']?>" alt="<?= $pro_row['name']?>">
-                                        <a href="product?product=<?= $pro_row['slug']?>" class="item-name"><?= $pro_row['name']?></a>
+                                        <a href="product?product=<?= $pro_row['slug']?>" class="item-name"><?= strlen($pro_row['name']) > 60 ? substr($pro_row['name'],0,60)."..." : $pro_row['name']?></a>
                                         <p class="item-price">₱<?= $pro_row['price']?></p>
                                     </div>
                                     <?php
@@ -398,11 +398,12 @@ $results_per_page = 4;
                         if(isset($_GET['sort'])){
                             $concat_sql = ' ORDER BY '.$_GET['sort'];
                             if($_GET['sort'] == 'sort'){
-                                $concat_sql = '';
+                                $concat_sql = ' ORDER BY RAND()';
                             }
                             $pro_sql = $pro_sql.$concat_sql.$pro_limit_sql;
                         }else{
-                            $pro_sql = $pro_sql.$pro_limit_sql;
+                            $concat_sql = ' ORDER BY RAND()';
+                            $pro_sql = $pro_sql.$concat_sql.$pro_limit_sql;
                         }
 
                         $pro_stmt = mysqli_query($conn, $pro_sql);
@@ -410,9 +411,9 @@ $results_per_page = 4;
                             foreach($pro_stmt as $pro_row){
 
                                 ?>
-                                <div class="item clickable ">
+                                <div class="item clickable overflow-hidden">
                                     <img class="item-img" src="./uploads/products/<?= $pro_row['image']?>" alt="<?= $pro_row['name']?>">
-                                    <a href="product?product=<?= $pro_row['slug']?>" class="item-name"><?= $pro_row['name']?></a>
+                                    <a href="product?product=<?= $pro_row['slug']?>" class="item-name"><?= strlen($pro_row['name']) > 60 ? substr($pro_row['name'],0,60)."..." : $pro_row['name']?></a>
                                     <p class="item-price">₱<?= $pro_row['price']?></p>
                                 </div>
                                 <?php

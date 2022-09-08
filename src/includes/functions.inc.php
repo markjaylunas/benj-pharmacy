@@ -1,5 +1,4 @@
 <?php
-
 function emptyInputSignup($fname, $lname, $email, $pwd, $pwdRepeat)
 {
     if (empty($fname) || empty($lname) || empty($email) || empty($pwd) || empty($pwdRepeat)) {
@@ -10,7 +9,9 @@ function emptyInputSignup($fname, $lname, $email, $pwd, $pwdRepeat)
 }
 function invalidUid($uname)
 {
-    if (!preg_match("/^[a-zA-Z0-9]*$/", $uname)) {
+    // if (!preg_match("/^[a-zA-Z0-9]*$/", $uname)) {
+    if (!preg_match("/^(?![\s.]+$)[a-zA-Z\s.]*$/", $uname)) {
+
         return true;
     } else {
         return false;
@@ -82,8 +83,9 @@ function uidExists($conn, $uid)
 
 function createUser($conn, $fname, $lname, $email, $pwd)
 {
-
-    $sql = "INSERT INTO users (user_id, first_name,  last_name, email, password) VALUES (?, ?, ?, ?, ?);";
+    $code = rand(999999, 111111);
+    $status = "notverified";
+    $sql = "INSERT INTO users (user_id, first_name,  last_name, email, password, code, status) VALUES (?, ?, ?, ?, ?, ?, ?);";
     $stmt = mysqli_stmt_init($conn);
 
     if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -95,11 +97,27 @@ function createUser($conn, $fname, $lname, $email, $pwd)
     while (uidExists($conn, $uid) !== false) {
         $uid = md5(uniqid());
     }
-    mysqli_stmt_bind_param($stmt, "sssss", $uid, $fname, $lname, $email, $hashedPwd);
+    mysqli_stmt_bind_param($stmt, "sssssss", $uid, $fname, $lname, $email, $hashedPwd, $code, $status);
     mysqli_stmt_execute($stmt);
-    mysqli_stmt_close($stmt);
+    
+    $subject = "Benj Pharmacy Online - Email Verification Code";
+    $message = "Your verification code is $code";
+    $sender = "From: official@benjpharmacy.online";
 
-    header('location: ../signup?error=none');
+    if(mail($email, $subject, $message, $sender)){
+        // $_SESSION['email'] = $email;
+        // $_SESSION['password'] = $password;
+        $location = 'location: ../user-otp?email=';
+        $location .= $email;
+        header($location);
+        exit();
+    }else{
+        header('location: ../signup?error=otp-sending-failed');
+        exit();
+    }
+
+    mysqli_stmt_close($stmt);
+    header('location: ../signup?error=create-user');
     exit();
 }
 
@@ -115,6 +133,7 @@ function emptyInputLogin($email, $pwd)
 
 function getUserInfo($conn, $email)
 {
+    session_start();
     $sql = "SELECT * FROM users WHERE email = ?";
     $stmt = mysqli_stmt_init($conn);
 
@@ -128,6 +147,11 @@ function getUserInfo($conn, $email)
     $res = mysqli_stmt_get_result($stmt);
 
     if ($row = mysqli_fetch_assoc($res)) {
+        if($row['status'] != 'verified') {
+            mysqli_stmt_close($stmt);
+            header('location: ../user-otp?email='.$row['email']); 
+            exit();
+        }
         $_SESSION['user_id'] = $row['user_id'];
         $_SESSION['email'] = $row['email'];
         $_SESSION['fname'] = $row['first_name'];
@@ -137,6 +161,8 @@ function getUserInfo($conn, $email)
     }
 
     mysqli_stmt_close($stmt);
+    header('location: ../index'); 
+    exit();
 }
 
 function loginUser($conn, $email, $pwd)

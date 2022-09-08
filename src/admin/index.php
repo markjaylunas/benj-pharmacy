@@ -37,7 +37,7 @@ include('./message.php');
             <div class="card bg-warning text-white mb-4">
                 <div class="card-body">Total Products
                 <?php 
-                        $product_sql = "SELECT * FROM orders;";
+                        $product_sql = "SELECT * FROM products;";
                         $product_stmt = mysqli_query($conn, $product_sql);
                         if($product_count = mysqli_num_rows($product_stmt)){
                             ?>
