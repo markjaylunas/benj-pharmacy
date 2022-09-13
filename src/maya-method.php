@@ -1,5 +1,14 @@
 <?php
 include_once 'includes/header.php';
+
+$public_key = ""; // public key here
+if (!$public_key){
+    echo '<script>alert("Please provide a public key for Maya business account")</script>';
+    echo '<p>Page failed to load.</p>';
+    echo '<p>Must provide a public key to continue.</p>';
+    echo '<a href="index.php">Return to Homepage</a>';
+    exit();
+}
 ?>
 <style>
     .maya-pay-btn {

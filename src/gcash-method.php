@@ -1,5 +1,6 @@
 <?php
 include_once 'includes/header.php';
+
 ?>
 <style>
     .gcash-pay-btn {
@@ -103,12 +104,9 @@ include_once 'includes/header.php';
 
         $_SESSION['cart_total'] = number_format((float)$total, 2, '.', '');
         
+        
         include_once './gcash-request.php';
         
-        // $gcash_response = $_SESSION['gcash_response'];
-        // print_r($gcash_response);
-        // print("<pre>".print_r($gcash_response,true)."</pre>");
-
 
         $gcash_checkouturl = $gcash_response['data']['checkouturl'];
     ?>

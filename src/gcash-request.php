@@ -1,6 +1,15 @@
 <?php
 
-function requestGcash(){
+$public_key = ""; // public key here
+if (!$public_key){
+    echo '<script>alert("Please provide a public key for Maya business account")</script>';
+    echo '<p>Page failed to load.</p>';
+    echo '<p>Must provide a public key to continue.</p>';
+    echo '<a href="index.php">Return to Homepage</a>';
+    exit();
+}
+
+function requestGcash($public_key){
 
 
     // GCASH CURL REQUEST
@@ -16,7 +25,7 @@ function requestGcash(){
     CURLOPT_HTTP_VERSION      => CURL_HTTP_VERSION_1_1,
     CURLOPT_CUSTOMREQUEST     => 'POST',
     CURLOPT_POSTFIELDS        => array(
-                    'x-public-key'  => '',
+                    'x-public-key'  => $public_key, // provide gcash public key here
                     'amount'        => $_SESSION['cart_total'],
                     'description'   => 'Payment for Benj Pharmacy products',
                     // 'fee'           => 1,
@@ -37,7 +46,7 @@ function requestGcash(){
     return '';
 }
 
-$gcash_response = requestGcash();
+$gcash_response = requestGcash($public_key);
 $gcash_response = json_decode($gcash_response, true);
 $_SESSION['gcash_response'] = $gcash_response;
 

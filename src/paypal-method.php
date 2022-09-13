@@ -1,8 +1,17 @@
 <?php
 include_once 'includes/header.php';
+
+$public_key = ""; // public key here
+if (!$public_key){
+    echo '<script>alert("Please provide a public key for Paypal business account")</script>';
+    echo '<p>Page failed to load.</p>';
+    echo '<p>Must provide a public key to continue.</p>';
+    echo '<a href="index.php">Return to Homepage</a>';
+    exit();
+}
+
 ?>
 <div class="paypal-container mx-auto text-center my-4 py-4">
-    <input type="hidden" id="delivery_option" value="<?= $_GET['delivery_option']; ?>">
     
     <?php
         if(!isset($_SESSION['user_id'])){
@@ -92,9 +101,7 @@ include_once 'includes/header.php';
     </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-<!-- sandbox AZq8g2aSTgrXiRVsBI2ZH4Z4hjTIzmJtwAuRIhvEA9EG_uAflsPsX92DuA57-lUKGbN07L-2v0D7AxLF -->
-<!-- live AV2GT-gaR4tNUcubT2K7H6m_FsTYIP6QTjC8ZSx8lyhESxwo1fRinWgUG7C-Td8iYG__S_u37PEEPV69 -->
-<!-- &buyer-country=PH&currency=PHP -->
-<script src="https://www.paypal.com/sdk/js?client-id=AZq8g2aSTgrXiRVsBI2ZH4Z4hjTIzmJtwAuRIhvEA9EG_uAflsPsX92DuA57-lUKGbN07L-2v0D7AxLF&currency=PHP"></script>
+
+<script src="https://www.paypal.com/sdk/js?client-id=<?=$public_key?>&currency=PHP"></script>
 <script src="./js/paypal.js?v=1.18"></script>
 <?php include_once 'includes/footer.php';?>
